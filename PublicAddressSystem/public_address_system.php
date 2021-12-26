@@ -1,6 +1,6 @@
 <?php
 
-$con = mysqli_connect("localhost","root","","pra");
+$con = mysqli_connect("localhost","root","","public_address_system");
 if(!$con)
 	{
 		die("Database Connection failed".mysqli_error());
@@ -49,7 +49,7 @@ table.imagetable td {
 	<center><h1>PUBLIC ADDRESS SYSTEM</h1></center>
 	<table class="imagetable" align="center">
 <tr>
-	<th>MESSAGE</th><th>ID</th>
+	<th>MESSAGE</th><th>ID</th><th>PUBLISHED AT</th>
 </tr>
 <!-- We use while loop to fetch data and display rows of date on html table -->
 
@@ -57,8 +57,9 @@ table.imagetable td {
 
      while ($message = mysqli_fetch_assoc($records)){
            echo "<tr>";
-               echo "<td>".$message['msg']."</td>";
+               echo "<td>".$message['message']."</td>";
                echo "<td>".$message['id']."</td>";
+			   echo "<td>".$message['created_at']."</td>";
            echo "</tr>";
 
      }
