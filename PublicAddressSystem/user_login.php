@@ -7,6 +7,7 @@ if(count($_POST)>0) {
 	if($count==0) {
 		$message = "Invalid username or password";
 		echo "<p style='color: red;'>".$message."</p>";
+		echo "<button><a href='#' onclick='history.back();'>Back</button>";
 	} else {
 		header('Location:public_address_system.php');
 	}

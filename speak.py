@@ -9,9 +9,12 @@ mydb = mysql.connector.connect(
 )
 
 mycursor = mydb.cursor()
-sql = "INSERT INTO message (msg,created_at) VALUES (%s,now())"
+sql = "INSERT INTO message (message,created_at) VALUES (%s,now())"
 
-r = sr.Recognizer()                                                                                   
+r = sr.Recognizer()
+
+
+# print(sr.Microphone.list_microphone_names()) printts all available microphone input in the system
 
 
 with sr.Microphone() as source:
@@ -20,7 +23,7 @@ with sr.Microphone() as source:
     try:
     # wait for speech for a maximum of 3 seconds
     # listen to speech for a maximum of 3 seconds
-        audio = r.listen(source, timeout=3, phrase_time_limit=3)
+        audio = r.listen(source, timeout=6, phrase_time_limit=3)
         val=r.recognize_google(audio)
     except Exception as e:
         # a timeouterror exception will be thrown if the timeout is reached
@@ -34,5 +37,9 @@ except sr.UnknownValueError:
 except sr.RequestError as e:
     print("Could not request results; {0}".format(e))
 
-mycursor.execute(sql, val)
-mydb.commit()
+try:
+    mycursor.execute(sql, (val,))
+    mydb.commit()
+    print("value inserted")
+except Exception as e:
+    print(e)

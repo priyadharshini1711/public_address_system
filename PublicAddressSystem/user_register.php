@@ -21,14 +21,14 @@ if(count($_POST)>0) {
     foreach ($message as $value) {
         echo "<p style='color: red;'>".$value."</p>";
       }
-      echo "<input type='submit' <a href='#' onclick='history.back();'></a>";
+      echo "<button><a href='#' onclick='history.back();'>Back</button>";
     } else {
         $sql = "INSERT INTO user_registration (username, password, email)
 VALUES ('$uname', '$pass', '$email')";
 
 if (mysqli_query($conn, $sql)) {
   echo "<p style='color: green;'> User Registered Successfully </p>";
-  echo "<input type='submit' <a href='#' onclick='history.back();'></a>";
+  echo "<button><a href='#' onclick='history.back();'>Back</button>";
 } else {
   echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }

@@ -67,5 +67,6 @@ if(!$con)
 				}
 			?>
     </table>
+	<center><button style="margin-top:10px;"><a href="index.html">Back to Login</button></center>
    </body>
 </html>
